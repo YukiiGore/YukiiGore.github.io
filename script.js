@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initAudioPlayer();
     initWorkCards();
     initModal();
+    initDiscordCopy();
 });
 
 /* ===== Intersection Observer — Reveal on Scroll ===== */
@@ -238,4 +239,38 @@ function closeModal() {
     setTimeout(() => {
         body.innerHTML = '';
     }, 350);
+}
+
+/* ===== Discord Copy to Clipboard ===== */
+function initDiscordCopy() {
+    const btn = document.getElementById('discordCopyBtn');
+    if (!btn) return;
+
+    btn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText('yukiigore');
+            showToast('✓ Username copied');
+        } catch (err) {
+            console.error('Failed to copy Discord username: ', err);
+            showToast('Failed to copy username');
+        }
+    });
+}
+
+/* ===== Toast Notification ===== */
+let toastTimeout;
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+
+    // Reset timeout if clicked rapidly
+    clearTimeout(toastTimeout);
+
+    toast.textContent = message;
+    toast.classList.add('show');
+
+    toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2000);
 }
