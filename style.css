@@ -830,3 +830,23 @@ button {
     visibility: visible;
     transform: translateX(-50%) translateY(0);
 }
+
+/* ===== Work Credits ===== */
+.work-credit {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.work-credit a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.work-credit a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
